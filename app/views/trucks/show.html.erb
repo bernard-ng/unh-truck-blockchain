@@ -1,0 +1,7 @@
+<%= content_for :title, "Camion #{@truck.plate}" %>
+
+<%= render :layout => 'components/header', locals: {title: "Camion ##{@truck.id}"} do %>
+  <%= header_link_tag edit_truck_path(@truck), 'Modifier', 'edit'  %>
+<% end %>
+
+<%= render @truck %>

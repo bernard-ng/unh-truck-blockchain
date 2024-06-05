@@ -3,14 +3,15 @@
 <div class="nk-block-head">
   <div class="nk-block-head-content">
     <h5 class="nk-block-title fw-bolder">Inscription</h5>
-    <div class="nk-block-des"><p>Bienvenue sur Ecovet</p></div>
+    <div class="nk-block-des"><p>Bienvenue sur Truck Chain</p></div>
   </div>
 </div>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <%= f.email_field :email, label: 'Adresse email', class: 'form-control-lg', autofocus: true, autocomplete: "email" %>
+  <%= f.text_field :full_name, label: 'Votre nom', class: 'form-control-lg', autofocus: true %>
+  <%= f.email_field :email, label: 'Adresse email', class: 'form-control-lg', autocomplete: "email" %>
   <%= f.password_field :password, label: 'Mot de passe', class: 'form-control-lg', autocomplete: 'new-password' %>
   <%= f.submit "S'inscrire", class: 'btn btn-lg btn-primary btn-block' %>
 <% end %>

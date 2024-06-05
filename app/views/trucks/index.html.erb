@@ -1,0 +1,38 @@
+<%= content_for :title, 'Tous les camions' %>
+
+<%= render :layout => 'components/header', locals: {title: 'Tous les camions'} do %>
+  <%= header_link_tag new_truck_path, 'Nouveau', 'plus' %>
+<% end %>
+
+<% if @trucks.blank? %>
+  <%= render :partial => 'components/empty_state' %>
+<% else %>
+  <div class="card card-preview">
+    <table class="table table-tranx">
+      <thead>
+      <tr class="tb-tnx-head">
+        <th>#</th>
+        <th>Plaque</th>
+        <th>Capacité</th>
+        <th>Date</th>
+        <th class="tb-tnx-action">
+          <span>&nbsp;</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @trucks.each do |truck| %>
+        <tr class="tb-tnx-item">
+          <td><%= link_to truck.id, truck %></td>
+          <td><%= truck.plate %></td>
+          <td><%= truck.capacity %></td>
+          <td><%= truck.created_at %></td>
+          <td class="tb-tnx-action">
+            <%= link_to icon_tag("eye"), truck, class: 'text-soft btn btn-icon btn-trigger' %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

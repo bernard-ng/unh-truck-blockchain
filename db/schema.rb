@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_02_012616) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_161505) do
+  create_table "trucks", force: :cascade do |t|
+    t.string "plate"
+    t.float "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "full_name"
     t.string "role", default: "USER", null: false

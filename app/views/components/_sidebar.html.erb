@@ -15,13 +15,25 @@
     <div class="nk-sidebar-content">
       <div class="nk-sidebar-menu" data-simplebar>
         <ul class="nk-menu">
-<!--          <li class="nk-menu-item">-->
-            <%#= link_to farms_path, class: 'nk-menu-link' do %>
-<!--              <span class="nk-menu-icon"><%#= icon_tag 'activity-round' %></span>-->
-<!--              <span class="nk-menu-text">Fermes</span>-->
-            <%# end %>
-<!--          </li>-->
+          <li class="nk-menu-item">
+            <%= link_to root_path, class: 'nk-menu-link' do %>
+              <span class="nk-menu-icon"><%= icon_tag 'activity-round' %></span>
+              <span class="nk-menu-text">Commandes</span>
+            <% end %>
+          </li>
 
+          <li class="nk-menu-item">
+            <%= link_to users_path, class: 'nk-menu-link' do %>
+              <span class="nk-menu-icon"><%= icon_tag 'users' %></span>
+              <span class="nk-menu-text">Utilisateurs</span>
+            <% end %>
+          </li>
+          <li class="nk-menu-item">
+            <%= link_to trucks_path, class: 'nk-menu-link' do %>
+              <span class="nk-menu-icon"><%= icon_tag 'card-view' %></span>
+              <span class="nk-menu-text">Camions</span>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
