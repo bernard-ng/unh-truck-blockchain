@@ -22,18 +22,20 @@
             <% end %>
           </li>
 
-          <li class="nk-menu-item">
-            <%= link_to users_path, class: 'nk-menu-link' do %>
-              <span class="nk-menu-icon"><%= icon_tag 'users' %></span>
-              <span class="nk-menu-text">Utilisateurs</span>
-            <% end %>
-          </li>
-          <li class="nk-menu-item">
-            <%= link_to trucks_path, class: 'nk-menu-link' do %>
-              <span class="nk-menu-icon"><%= icon_tag 'card-view' %></span>
-              <span class="nk-menu-text">Camions</span>
-            <% end %>
-          </li>
+          <% if is_admin? %>
+            <li class="nk-menu-item">
+              <%= link_to admin_users_path, class: 'nk-menu-link' do %>
+                <span class="nk-menu-icon"><%= icon_tag 'users' %></span>
+                <span class="nk-menu-text">Utilisateurs</span>
+              <% end %>
+            </li>
+            <li class="nk-menu-item">
+              <%= link_to admin_trucks_path, class: 'nk-menu-link' do %>
+                <span class="nk-menu-icon"><%= icon_tag 'card-view' %></span>
+                <span class="nk-menu-text">Camions</span>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
