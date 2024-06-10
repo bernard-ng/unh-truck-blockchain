@@ -4,7 +4,7 @@ module Admin
 
     # GET /trucks
     def index
-      @trucks = Truck.all.order(created_at: :desc)
+      @trucks = Truck.all
     end
 
     # GET /trucks/1

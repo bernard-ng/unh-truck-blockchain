@@ -7,4 +7,15 @@
   <button class="close" data-bs-dismiss="alert"></button>
 </div>
 
+<div class="nk-block">
+  <div class="row g-gs">
+    <div class="col-sm-6">
+      <%= render partial: 'main/stat_card', locals: {title: 'Commandes livrées', count: @shipped_orders_count}  %>
+    </div>
+    <div class="col-sm-6">
+      <%= render partial: 'main/stat_card', locals: {title: 'Commandes en cours', count: @unshipped_orders_count}  %>
+    </div>
+  </div>
+</div>
+
 <%= render :partial => 'components/empty_state' %>

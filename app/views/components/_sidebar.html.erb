@@ -15,14 +15,22 @@
     <div class="nk-sidebar-content">
       <div class="nk-sidebar-menu" data-simplebar>
         <ul class="nk-menu">
-          <li class="nk-menu-item">
-            <%= link_to root_path, class: 'nk-menu-link' do %>
-              <span class="nk-menu-icon"><%= icon_tag 'activity-round' %></span>
-              <span class="nk-menu-text">Commandes</span>
-            <% end %>
-          </li>
+          <% unless is_admin? %>
+            <li class="nk-menu-item">
+              <%= link_to root_path, class: 'nk-menu-link' do %>
+                <span class="nk-menu-icon"><%= icon_tag 'activity-round' %></span>
+                <span class="nk-menu-text">Commandes</span>
+              <% end %>
+            </li>
+          <% end %>
 
           <% if is_admin? %>
+            <li class="nk-menu-item">
+              <%= link_to admin_order_path, class: 'nk-menu-link' do %>
+                <span class="nk-menu-icon"><%= icon_tag 'activity-round' %></span>
+                <span class="nk-menu-text">Commandes</span>
+              <% end %>
+            </li>
             <li class="nk-menu-item">
               <%= link_to admin_users_path, class: 'nk-menu-link' do %>
                 <span class="nk-menu-icon"><%= icon_tag 'users' %></span>

@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   after_create :send_default_password
 
+  default_scope { order(created_at: :desc) }
+
   def password_required?
     return false if new_record?
     super

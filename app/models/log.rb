@@ -1,4 +1,5 @@
-class Truck < ApplicationRecord
+class Log < ApplicationRecord
+  belongs_to :order
 
   default_scope { order(created_at: :desc) }
 end

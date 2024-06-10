@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_161505) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_082555) do
+  create_table "logs", force: :cascade do |t|
+    t.float "temperature"
+    t.float "quantity"
+    t.float "lat"
+    t.float "lng"
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_logs_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "status"
+    t.float "shipped_quantity"
+    t.float "received_quantity"
+    t.integer "truck_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "shipped_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["truck_id"], name: "index_orders_on_truck_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "trucks", force: :cascade do |t|
     t.string "plate"
     t.float "capacity"
@@ -42,4 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_161505) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "logs", "orders"
+  add_foreign_key "orders", "trucks"
+  add_foreign_key "orders", "users"
 end
