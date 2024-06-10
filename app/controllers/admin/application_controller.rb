@@ -4,8 +4,8 @@ module Admin
 
     private
       def require_admin
-        if current_user && current_user.role == "ADMIN"
-          redirect_to root_url, notice: "Vous n'avez pas la permission d'accès à cette page"
+        if current_user && current_user.role != "ADMIN"
+          redirect_to root_url, alert: "Vous n'avez pas la permission d'accès à cette page"
         end
       end
   end

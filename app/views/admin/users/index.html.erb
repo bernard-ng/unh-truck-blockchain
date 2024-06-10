@@ -1,7 +1,7 @@
 <%= content_for :title, 'Tous les utilisateurs' %>
 
 <%= render :layout => 'components/header', locals: {title: 'Tous les utilisateurs'} do %>
-  <%= header_link_tag new_user_path, 'Nouveau', 'plus' %>
+  <%= header_link_tag new_admin_user_path, 'Nouveau', 'plus' %>
 <% end %>
 
 <% if @users.blank? %>
@@ -24,13 +24,13 @@
       <tbody>
       <% @users.each do |user| %>
         <tr class="tb-tnx-item">
-          <td><%= link_to user.id, user %></td>
+          <td><%= link_to user.id, [:admin, user] %></td>
           <td><%= user.full_name %></td>
           <td><%= user.email %></td>
           <td><%= user.role %></td>
           <td><%= user.created_at %></td>
           <td class="tb-tnx-action">
-            <%= link_to icon_tag("eye"), user, class: 'text-soft btn btn-icon btn-trigger' %>
+            <%= link_to icon_tag("eye"), [:admin, user], class: 'text-soft btn btn-icon btn-trigger' %>
           </td>
         </tr>
       <% end %>

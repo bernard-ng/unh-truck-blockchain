@@ -1,7 +1,7 @@
 <%= content_for :title, 'Tous les camions' %>
 
 <%= render :layout => 'components/header', locals: {title: 'Tous les camions'} do %>
-  <%= header_link_tag new_truck_path, 'Nouveau', 'plus' %>
+  <%= header_link_tag new_admin_truck_path, 'Nouveau', 'plus' %>
 <% end %>
 
 <% if @trucks.blank? %>
@@ -23,12 +23,12 @@
       <tbody>
       <% @trucks.each do |truck| %>
         <tr class="tb-tnx-item">
-          <td><%= link_to truck.id, truck %></td>
+          <td><%= link_to truck.id, [:admin, truck] %></td>
           <td><%= truck.plate %></td>
           <td><%= truck.capacity %></td>
           <td><%= truck.created_at %></td>
           <td class="tb-tnx-action">
-            <%= link_to icon_tag("eye"), truck, class: 'text-soft btn btn-icon btn-trigger' %>
+            <%= link_to icon_tag("eye"), [:admin, truck], class: 'text-soft btn btn-icon btn-trigger' %>
           </td>
         </tr>
       <% end %>

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-inner">
-    <%= bootstrap_form_for(user, url: user.id.nil? ? users_path : user_path(user)) do |f| %>
+    <%= bootstrap_form_for(user, url: user.id.nil? ? admin_users_path : admin_user_path(user)) do |f| %>
       <% user.errors.each do |error| %>
         <div data-controller="flash" data-type="error" data-message="<%= error.full_message %>" data-timer="5000"></div>
       <% end %>

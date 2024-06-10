@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-inner">
-    <%= bootstrap_form_for(truck, url: truck.id.nil? ? trucks_path : truck_path(truck)) do |f| %>
+    <%= bootstrap_form_for(truck, url: truck.id.nil? ? admin_trucks_path : admin_truck_path(truck)) do |f| %>
       <% truck.errors.each do |error| %>
         <div data-controller="flash" data-type="error" data-message="<%= error.full_message %>" data-timer="5000"></div>
       <% end %>
