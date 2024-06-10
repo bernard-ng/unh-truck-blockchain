@@ -9,6 +9,7 @@ module Admin
 
     # GET /trucks/1
     def show
+      @orders = Order.where(truck_id: @truck.id)
     end
 
     # GET /trucks/new
@@ -54,7 +55,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def truck_params
-      params.require(:truck).permit(:plate, :capacity)
+      params.require(:truck).permit(:plate, :capacity, :is_available)
     end
   end
 end

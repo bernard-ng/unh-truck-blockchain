@@ -1,14 +1,40 @@
-<p style="color: green"><%= notice %></p>
+<%= content_for :title, 'Toutes les commandes' %>
 
-<h1>Orders</h1>
+<%= render :layout => 'components/header', locals: {title: 'Toutes les commandes'} do %>
+  <%= header_link_tag new_admin_order_path, 'Nouveau', 'plus' %>
+<% end %>
 
-<div id="orders">
-  <% @orders.each do |order| %>
-    <%= render order %>
-    <p>
-      <%= link_to "Show this order", order %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New order", new_admin_order_path %>
+<% if @orders.blank? %>
+  <%= render :partial => 'components/empty_state' %>
+<% else %>
+  <div class="card card-preview">
+    <table class="table table-tranx">
+      <thead>
+      <tr class="tb-tnx-head">
+        <th>#</th>
+        <th>Client</th>
+        <th>Camion</th>
+        <th>Statut</th>
+        <th>Date</th>
+        <th class="tb-tnx-action">
+          <span>&nbsp;</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @orders.each do |order| %>
+        <tr class="tb-tnx-item">
+          <td><%= order.id %></td>
+          <td><%= link_to order.user.email, [:admin, order.user] %></td>
+          <td><%= link_to order.truck.plate, [:admin, order.truck] %></td>
+          <td><%= order.status %></td>
+          <td><%= order.created_at %></td>
+          <td class="tb-tnx-action">
+            <%= link_to icon_tag("eye"), [:admin, order], class: 'text-soft btn btn-icon btn-trigger' %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

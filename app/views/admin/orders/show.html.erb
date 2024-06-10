@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<%= content_for :title, "Commande #{@order.id}" %>
+
+<%= render :layout => 'components/header', locals: {title: "Commande ##{@order.id}"} do %>
+  <%= header_link_tag edit_admin_order_path(@order), 'Modifier', 'edit'  %>
+<% end %>
+
+<div class="card mb-4">
+  <div class="card-inner">
+    <iframe width="100%" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=27.483037412166595%2C-11.629176231995574%2C27.485091984272007%2C-11.627602564347978&amp;layer=mapnik" style="border: 1px solid black"></iframe>
+    <br/>
+    <small><a href="https://www.openstreetmap.org/#map=19/-11.62839/27.48406">View Larger Map</a></small>
+  </div>
+</div>
 
 <%= render @order %>
-
-<div>
-  <%= link_to "Edit this order", edit_order_path(@order) %> |
-  <%= link_to "Back to orders", orders_path %>
-
-  <%= button_to "Destroy this order", @order, method: :delete %>
-</div>

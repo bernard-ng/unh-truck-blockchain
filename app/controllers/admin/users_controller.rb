@@ -9,6 +9,7 @@ module Admin
 
     # GET /users/1
     def show
+      @orders = Order.where(user_id: @user.id)
     end
 
     # GET /users/new

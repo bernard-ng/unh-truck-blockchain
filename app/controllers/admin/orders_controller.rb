@@ -25,7 +25,7 @@ module Admin
       @order = Order.new(order_params)
 
       if @order.save
-        redirect_to @order, notice: "Order was successfully created."
+        redirect_to admin_order_url(@order), notice: "Order was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -34,7 +34,7 @@ module Admin
     # PATCH/PUT /orders/1
     def update
       if @order.update(order_params)
-        redirect_to @order, notice: "Order was successfully updated.", status: :see_other
+        redirect_to admin_order_url(@order), notice: "Order was successfully updated.", status: :see_other
       else
         render :edit, status: :unprocessable_entity
       end
@@ -43,7 +43,7 @@ module Admin
     # DELETE /orders/1
     def destroy
       @order.destroy!
-      redirect_to orders_url, notice: "Order was successfully destroyed.", status: :see_other
+      redirect_to admin_orders_url, notice: "Order was successfully destroyed.", status: :see_other
     end
 
     private

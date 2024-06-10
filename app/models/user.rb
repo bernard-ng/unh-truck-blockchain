@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
+  validates_presence_of :full_name, :email, length: { maximum: 25 }
 
   after_create :send_default_password
 
   default_scope { order(created_at: :desc) }
+  scope :all_clients, -> { where(role: 'USER') }
 
   def password_required?
     return false if new_record?

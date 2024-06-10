@@ -11,7 +11,6 @@
     <table class="table table-tranx">
       <thead>
       <tr class="tb-tnx-head">
-        <th>#</th>
         <th>Nom</th>
         <th>Email</th>
         <th>Rôle</th>
@@ -24,7 +23,6 @@
       <tbody>
       <% @users.each do |user| %>
         <tr class="tb-tnx-item">
-          <td><%= link_to user.id, [:admin, user] %></td>
           <td><%= user.full_name %></td>
           <td><%= user.email %></td>
           <td><%= user.role %></td>

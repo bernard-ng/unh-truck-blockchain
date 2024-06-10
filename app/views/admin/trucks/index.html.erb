@@ -12,8 +12,8 @@
       <thead>
       <tr class="tb-tnx-head">
         <th>#</th>
-        <th>Plaque</th>
         <th>Capacité</th>
+        <th>Disponible</th>
         <th>Date</th>
         <th class="tb-tnx-action">
           <span>&nbsp;</span>
@@ -23,9 +23,15 @@
       <tbody>
       <% @trucks.each do |truck| %>
         <tr class="tb-tnx-item">
-          <td><%= link_to truck.id, [:admin, truck] %></td>
-          <td><%= truck.plate %></td>
+          <td><%= link_to truck.plate, [:admin, truck] %></td>
           <td><%= truck.capacity %></td>
+          <td>
+            <% if truck.is_available %>
+              <span class="text text-success">OUI</span>
+            <% else %>
+              <span class="text text-danger">NON</span>
+            <% end %>
+          </td>
           <td><%= truck.created_at %></td>
           <td class="tb-tnx-action">
             <%= link_to icon_tag("eye"), [:admin, truck], class: 'text-soft btn btn-icon btn-trigger' %>

@@ -1,8 +1,47 @@
+<%= content_for :title, "Utilisateur #{@user.id}" %>
+
+<%= render :layout => 'components/header', locals: {title: "Utilisateur ##{@user.id}"} do %>
+  <%= header_link_tag edit_admin_user_path(@user), 'Modifier', 'edit'  %>
+<% end %>
+
 <%= render @user %>
 
-<div>
-  <%= link_to "Edit this user", edit_admin_user_path(@user) %> |
-  <%= link_to "Back to users", admin_users_path %>
-
-  <%= button_to "Destroy this user", [:admin, @user], method: :delete %>
+<div class="nk-block-head mt-4">
+  <h5 class="title">Commandes récentes</h5>
 </div>
+<% if @orders.blank? %>
+  <%= render :partial => 'components/empty_state' %>
+<% else %>
+  <div class="card card-preview">
+    <table class="table table-tranx">
+      <thead>
+      <tr class="tb-tnx-head">
+        <th>#</th>
+        <th>Camion</th>
+        <th>Quantité livrée</th>
+        <th>Quantité reçue</th>
+        <th>Statut</th>
+        <th>Date</th>
+        <th class="tb-tnx-action">
+          <span>&nbsp;</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @orders.each do |order| %>
+        <tr class="tb-tnx-item">
+          <td><%= order.id %></td>
+          <td><%= link_to order.truck.plate, [:admin, order.truck] %></td>
+          <td><%= order.shipped_quantity %></td>
+          <td><%= order.received_quantity %></td>
+          <td><%= order.status %></td>
+          <td><%= order.created_at %></td>
+          <td class="tb-tnx-action">
+            <%= link_to icon_tag("eye"), [:admin, order], class: 'text-soft btn btn-icon btn-trigger' %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

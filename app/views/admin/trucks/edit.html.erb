@@ -1,10 +1,4 @@
-<h1>Editing truck</h1>
+<%= content_for :title, 'Éditer un camion' %>
 
+<%= render :partial => 'components/header', locals: {title: 'Éditer un camion'} %>
 <%= render "form", truck: @truck %>
-
-<br>
-
-<div>
-  <%= link_to "Show this truck", @truck %> |
-  <%= link_to "Back to trucks", admin_trucks_path %>
-</div>

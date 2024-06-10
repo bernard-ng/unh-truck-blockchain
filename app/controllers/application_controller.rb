@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    resource.role == 'ADMIN' ? admin_order_url : root_url
+    resource.role == 'ADMIN' ? admin_orders_url : root_url
   end
 
   protected
