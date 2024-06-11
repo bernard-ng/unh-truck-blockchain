@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  enum :status, %w[pending, canceled, shipped], validated: true
   belongs_to :truck
   belongs_to :user
 
