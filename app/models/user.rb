@@ -12,6 +12,7 @@ class User < ApplicationRecord
     super
   end
 
+  private
   def send_default_password
     password = SecureRandom.hex(6)
     update(password: password)
