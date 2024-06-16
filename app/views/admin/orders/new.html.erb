@@ -2,17 +2,14 @@
 
 <%= render :partial => 'components/header', locals: {title: 'Ajouter une commande'} %>
 
-<div class="row">
+<div class="row" data-controller="coordinate">
   <div class="col-12 col-md-6">
     <%= render "form", order: @order %>
   </div>
   <div class="col-12 col-md-6">
     <div class="card">
-      <div class="card-inner">
-        <iframe width="100%" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=27.483037412166595%2C-11.629176231995574%2C27.485091984272007%2C-11.627602564347978&amp;layer=mapnik" style="border: 1px solid black"></iframe>
-        <br/>
-        <small><a href="https://www.openstreetmap.org/#map=19/-11.62839/27.48406">View Larger Map</a></small>
-      </div>
+      <map class="card-inner" id="map" style="height: 435px;">
+      </map>
     </div>
   </div>
 </div>

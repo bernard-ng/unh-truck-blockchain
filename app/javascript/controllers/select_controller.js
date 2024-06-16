@@ -6,11 +6,7 @@ export default class SelectController extends Controller {
         const selects = this.element.querySelectorAll("select")
 
         selects.forEach(select => {
-            if (select.multiple) {
-                new TomSelect(`#${select.id}`, {
-                    maxItems: 6
-                })
-            }
+            new TomSelect(`#${select.id}`)
         })
     }
 }

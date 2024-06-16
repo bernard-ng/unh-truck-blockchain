@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_10_112925) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_16_021308) do
   create_table "logs", force: :cascade do |t|
     t.float "temperature"
     t.float "quantity"
@@ -31,6 +31,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_112925) do
     t.datetime "shipped_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "start", default: "-11.57405909955857,27.485894797487294"
+    t.string "destination"
     t.index ["truck_id"], name: "index_orders_on_truck_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -40,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_112925) do
     t.float "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_available", default: true
+    t.boolean "is_available", default: false
   end
 
   create_table "users", force: :cascade do |t|

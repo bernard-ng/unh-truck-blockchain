@@ -4,4 +4,12 @@
   <%= header_link_tag edit_admin_order_path(@order), 'Modifier', 'edit'  %>
 <% end %>
 
+<div class="card mb-4"
+     data-controller="map"
+     data-map-start-value="<%= @order.start %>"
+     data-map-destination-value="<%= @order.destination %>"
+>
+  <map class="card-inner" style="height: 335px;" id="map"></map>
+</div>
+
 <%= render @order %>

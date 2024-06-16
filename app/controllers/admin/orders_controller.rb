@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Admin
   class OrdersController < ApplicationController
-    before_action :set_order, only: %i[ show edit update destroy ]
+    before_action :set_order, only: %i[show edit update destroy]
 
     # GET /orders
     def index
@@ -8,8 +10,7 @@ module Admin
     end
 
     # GET /orders/1
-    def show
-    end
+    def show; end
 
     # GET /orders/new
     def new
@@ -17,15 +18,14 @@ module Admin
     end
 
     # GET /orders/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /orders
     def create
       @order = Order.new(order_params)
 
       if @order.save
-        redirect_to admin_order_url(@order), notice: "Order was successfully created."
+        redirect_to admin_order_url(@order), notice: 'Order was successfully created.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -34,7 +34,7 @@ module Admin
     # PATCH/PUT /orders/1
     def update
       if @order.update(order_params)
-        redirect_to admin_order_url(@order), notice: "Order was successfully updated.", status: :see_other
+        redirect_to admin_order_url(@order), notice: 'Order was successfully updated.', status: :see_other
       else
         render :edit, status: :unprocessable_entity
       end
@@ -43,10 +43,11 @@ module Admin
     # DELETE /orders/1
     def destroy
       @order.destroy!
-      redirect_to admin_orders_url, notice: "Order was successfully destroyed.", status: :see_other
+      redirect_to admin_orders_url, notice: 'Order was successfully destroyed.', status: :see_other
     end
 
     private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
@@ -54,7 +55,10 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:status, :shipped_quantity, :received_quantity, :truck_id, :user_id, :shipped_at)
+      params.require(:order).permit(
+        :status, :shipped_quantity, :received_quantity,
+        :truck_id, :user_id, :shipped_at, :destination
+      ).with_defaults(status: :pending)
     end
   end
 end

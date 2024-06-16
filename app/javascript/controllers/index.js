@@ -6,6 +6,10 @@ import { application } from "./application"
 
 import FlashController from "./flash_controller"
 import SelectController from "./select_controller";
+import CoordinateController from "./coordinate_controller";
+import MapController from "./map_controller";
 
 application.register("flash", FlashController)
 application.register('select', SelectController)
+application.register('coordinate', CoordinateController)
+application.register('map', MapController)

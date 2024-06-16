@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
   class LogsController < ApplicationController
-
     # GET /logs
     def index
       @logs = Log.all
@@ -16,13 +17,14 @@ module Admin
       @log = Log.new(log_params)
 
       if @log.save
-        redirect_to @log, notice: "Order log was successfully created."
+        redirect_to @log, notice: 'Order log was successfully created.'
       else
         render :new, status: :unprocessable_entity
       end
     end
 
     private
+
     # Only allow a list of trusted parameters through.
     def log_params
       params.require(:log).permit(:temperature, :quantity, :lat, :lng, :order_id)

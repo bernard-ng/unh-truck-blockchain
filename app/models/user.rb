@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :validatable, :trackable
   validates_presence_of :full_name, :email, length: { maximum: 25 }
@@ -9,13 +11,15 @@ class User < ApplicationRecord
 
   def password_required?
     return false if new_record?
+
     super
   end
 
   private
+
   def send_default_password
     password = SecureRandom.hex(6)
-    update(password: password)
+    update(password:)
     UserMailer.default_password(self, password).deliver_now
   end
 end

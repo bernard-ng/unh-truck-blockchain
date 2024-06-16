@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Admin
   class TrucksController < ApplicationController
-    before_action :set_truck, only: %i[ show edit update destroy ]
+    before_action :set_truck, only: %i[show edit update destroy]
 
     # GET /trucks
     def index
@@ -18,15 +20,14 @@ module Admin
     end
 
     # GET /trucks/1/edit
-    def edit
-    end
+    def edit; end
 
     # POST /trucks
     def create
       @truck = Truck.new(truck_params)
 
       if @truck.save
-        redirect_to admin_truck_path(@truck), notice: "Truck was successfully created."
+        redirect_to admin_truck_path(@truck), notice: 'Truck was successfully created.'
       else
         render :new, status: :unprocessable_entity
       end
@@ -35,7 +36,7 @@ module Admin
     # PATCH/PUT /trucks/1
     def update
       if @truck.update(truck_params)
-        redirect_to admin_truck_path(@truck), notice: "Truck was successfully updated.", status: :see_other
+        redirect_to admin_truck_path(@truck), notice: 'Truck was successfully updated.', status: :see_other
       else
         render :edit, status: :unprocessable_entity
       end
@@ -44,10 +45,11 @@ module Admin
     # DELETE /trucks/1
     def destroy
       @truck.destroy!
-      redirect_to admin_trucks_url, notice: "Truck was successfully destroyed.", status: :see_other
+      redirect_to admin_trucks_url, notice: 'Truck was successfully destroyed.', status: :see_other
     end
 
     private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_truck
       @truck = Truck.find(params[:id])
