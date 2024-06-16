@@ -23,8 +23,10 @@ module Admin
     # POST /orders
     def create
       @order = Order.new(order_params)
+      @order.status = :pending
 
       if @order.save
+        puts @order.inspect
         redirect_to admin_order_url(@order), notice: 'Order was successfully created.'
       else
         render :new, status: :unprocessable_entity
@@ -58,7 +60,7 @@ module Admin
       params.require(:order).permit(
         :status, :shipped_quantity, :received_quantity,
         :truck_id, :user_id, :shipped_at, :destination
-      ).with_defaults(status: :pending)
+      )
     end
   end
 end

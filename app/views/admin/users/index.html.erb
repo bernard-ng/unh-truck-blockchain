@@ -28,7 +28,7 @@
           <td><%= user.role %></td>
           <td><%= user.created_at %></td>
           <td class="tb-tnx-action">
-            <%= link_to icon_tag("eye"), [:admin, user], class: 'text-soft btn btn-icon btn-trigger' %>
+            <%= link_to icon_tag("eye"), admin_user_path(user), class: 'text-soft btn btn-icon btn-trigger' %>
           </td>
         </tr>
       <% end %>

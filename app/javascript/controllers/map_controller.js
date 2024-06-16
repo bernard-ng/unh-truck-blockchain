@@ -11,24 +11,27 @@ const tiles = {
 export default class MapController extends Controller {
     static values = {start: String, destination: String }
 
-    connect() {
-        const markers = new L.markerClusterGroup()
-        const map = L.map('map', {center: [-11.6, 27.4], zoom: 13})
+    initialize() {
+        this.markers = new L.markerClusterGroup()
+        this.map = L.map('map', {center: [-11.6, 27.4], zoom: 13})
 
         L.tileLayer(tiles.mapbox, {
             maxZoom: 19,
             attribution: '&copy; <a href="https://mapbox.com">Mapbox</a>'
-        }).addTo(map);
+        }).addTo(this.map);
+        super.initialize();
+    }
 
+    connect() {
         const start = this.startValue.split(',').map(c => parseFloat(c))
         const destination = this.destinationValue.split(',').map(c => parseFloat(c))
 
-        markers.addLayers([
+        this.markers.addLayers([
             L.marker(start).bindPopup('Swala').openPopup(),
             L.marker(destination).bindPopup('Destination').openPopup()
         ])
 
-        map.addLayer(markers) // show markers
-        map.fitBounds(new L.LatLngBounds([start, destination])) // center the map
+        this.map.addLayer(this.markers)
+        this.map.fitBounds(new L.LatLngBounds([start, destination]))
     }
 }

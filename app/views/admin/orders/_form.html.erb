@@ -7,7 +7,7 @@
 
       <div class="row">
         <div class="col-12"><%= f.collection_select :user_id, User.all_clients, :id, :email, label: 'Client', class: 'form-control-lg' %></div>
-        <div class="col-12"><%= f.text_field :destination, label: 'Destination', class: 'form-control-lg', help: 'cliquez sur la carte' %></div>
+        <div class="col-12"><%= f.text_field :destination, label: 'Destination', class: 'form-control-lg', help: 'cliquez sur la carte', autocomplete: 'off' %></div>
         <div class="col-12"><%= f.text_field :shipped_quantity, label: 'Quantité livrée', class: 'form-control-lg', append: ['M3'] %></div>
         <div class="col-12"><%= f.collection_select :truck_id, Truck.all_available, :id, :plate, label: 'Camion', class: 'form-control-lg' %></div>
         <div class="col-12"><%= f.datetime_field :shipped_at, label: 'Date de livraison', class: 'form-control-lg' %></div>

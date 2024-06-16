@@ -2,6 +2,14 @@
 
 <%= render :layout => 'components/header', locals: {title: "Utilisateur ##{@user.id}"} do %>
   <%= header_link_tag edit_admin_user_path(@user), 'Modifier', 'edit'  %>
+  <% if current_user != @user %>
+    <li class='nk-block-tools-opt'>
+      <%= link_to admin_user_path(@user), class: 'btn btn-danger', data: {turbo_method: :delete, turbo_confirm: 'êtes vous sûre ?'} do %>
+        <%= icon_tag 'trash' %>
+        <span>Supprimer</span>
+      <% end %>
+    </li>
+  <% end %>
 <% end %>
 
 <%= render @user %>
@@ -31,13 +39,13 @@
       <% @orders.each do |order| %>
         <tr class="tb-tnx-item">
           <td><%= order.id %></td>
-          <td><%= link_to order.truck.plate, [:admin, order.truck] %></td>
+          <td><%= link_to order.truck.plate, admin_truck_path(order.truck) %></td>
           <td><%= order.shipped_quantity %></td>
           <td><%= order.received_quantity %></td>
           <td><%= order.status %></td>
           <td><%= order.created_at %></td>
           <td class="tb-tnx-action">
-            <%= link_to icon_tag("eye"), [:admin, order], class: 'text-soft btn btn-icon btn-trigger' %>
+            <%= link_to icon_tag("eye"), admin_order_path(order), class: 'text-soft btn btn-icon btn-trigger' %>
           </td>
         </tr>
       <% end %>

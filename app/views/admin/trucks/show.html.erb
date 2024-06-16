@@ -2,6 +2,12 @@
 
 <%= render :layout => 'components/header', locals: {title: "Camion ##{@truck.id}"} do %>
   <%= header_link_tag edit_admin_truck_path(@truck), 'Modifier', 'edit'  %>
+  <li class='nk-block-tools-opt'>
+    <%= link_to admin_truck_path(@truck), class: 'btn btn-danger', data: {turbo_method: :delete, turbo_confirm: 'êtes vous sûre ?'} do %>
+      <%= icon_tag 'trash' %>
+      <span>Supprimer</span>
+    <% end %>
+  </li>
 <% end %>
 
 <%= render @truck %>
@@ -35,7 +41,7 @@
           <td><%= order.received_quantity %></td>
           <td><%= order.created_at %></td>
           <td class="tb-tnx-action">
-            <%= link_to icon_tag("eye"), [:admin, order], class: 'text-soft btn btn-icon btn-trigger' %>
+            <%= link_to icon_tag("eye"), admin_order_path(order), class: 'text-soft btn btn-icon btn-trigger' %>
           </td>
         </tr>
       <% end %>

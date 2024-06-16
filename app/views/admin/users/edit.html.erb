@@ -1,10 +1,4 @@
-<h1>Editing user</h1>
+<%= content_for :title, 'Éditer un utilisateur' %>
 
+<%= render :partial => 'components/header', locals: {title: 'Éditer un utilisateur'} %>
 <%= render "form", user: @user %>
-
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", admin_users_path %>
-</div>

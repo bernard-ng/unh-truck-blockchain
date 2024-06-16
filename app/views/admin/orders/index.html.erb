@@ -25,12 +25,12 @@
       <% @orders.each do |order| %>
         <tr class="tb-tnx-item">
           <td><%= order.id %></td>
-          <td><%= link_to order.user.email, [:admin, order.user] %></td>
-          <td><%= link_to order.truck.plate, [:admin, order.truck] %></td>
+          <td><%= link_to order.user.email, admin_user_path(order.user) %></td>
+          <td><%= link_to order.truck.plate, admin_truck_path(order.truck) %></td>
           <td><%= order.status %></td>
           <td><%= order.created_at %></td>
           <td class="tb-tnx-action">
-            <%= link_to icon_tag("eye"), [:admin, order], class: 'text-soft btn btn-icon btn-trigger' %>
+            <%= link_to icon_tag("eye"), admin_order_path(order), class: 'text-soft btn btn-icon btn-trigger' %>
           </td>
         </tr>
       <% end %>
