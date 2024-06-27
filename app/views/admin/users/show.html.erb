@@ -42,7 +42,7 @@
           <td><%= link_to order.truck.plate, admin_truck_path(order.truck) %></td>
           <td><%= order.shipped_quantity %></td>
           <td><%= order.received_quantity %></td>
-          <td><%= order.status %></td>
+          <td><%= order_status_tag order.status %></td>
           <td><%= order.created_at %></td>
           <td class="tb-tnx-action">
             <%= link_to icon_tag("eye"), admin_order_path(order), class: 'text-soft btn btn-icon btn-trigger' %>

@@ -36,7 +36,7 @@
       <% @orders.each do |order| %>
         <tr class="tb-tnx-item">
           <td><%= order.id %></td>
-          <td><%= order.status %></td>
+          <td><%= order_status_tag order.status %></td>
           <td><%= order.shipped_quantity %></td>
           <td><%= order.received_quantity %></td>
           <td><%= order.created_at %></td>

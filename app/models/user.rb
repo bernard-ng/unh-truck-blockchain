@@ -18,6 +18,8 @@ class User < ApplicationRecord
   private
 
   def send_default_password
+    return unless encrypted_password.blank?
+
     password = SecureRandom.hex(6)
     update(password:)
     UserMailer.default_password(self, password).deliver_now

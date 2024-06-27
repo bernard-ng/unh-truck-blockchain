@@ -105,6 +105,8 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.1)
     erubi (1.12.0)
+    faker (3.4.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     foreman (0.88.1)
     globalid (1.2.1)
@@ -294,6 +296,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  faker
   foreman (~> 0.88.1)
   httparty
   image_processing (~> 1.2)
@@ -312,4 +315,4 @@ RUBY VERSION
    ruby 3.3.0p0
 
 BUNDLED WITH
-   2.5.10
+   2.5.14

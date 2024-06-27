@@ -14,6 +14,7 @@
         <th>#</th>
         <th>Client</th>
         <th>Camion</th>
+        <th>Quantité</th>
         <th>Statut</th>
         <th>Date</th>
         <th class="tb-tnx-action">
@@ -27,7 +28,8 @@
           <td><%= order.id %></td>
           <td><%= link_to order.user.email, admin_user_path(order.user) %></td>
           <td><%= link_to order.truck.plate, admin_truck_path(order.truck) %></td>
-          <td><%= order.status %></td>
+          <td><%= order.shipped_quantity %></td>
+          <td><%= order_status_tag order.status %></td>
           <td><%= order.created_at %></td>
           <td class="tb-tnx-action">
             <%= link_to icon_tag("eye"), admin_order_path(order), class: 'text-soft btn btn-icon btn-trigger' %>

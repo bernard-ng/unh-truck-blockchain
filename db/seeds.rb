@@ -9,3 +9,25 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+15.times do
+  Truck.create(
+    plate: Faker::Vehicle.license_plate,
+    capacity: Faker::Number.number(digits: 3),
+    is_available: true
+  )
+end
+
+# first administrator
+User.create(full_name: 'admin', email: 'admin@admin.com', password: '000000', role: 'ADMIN')
+
+# regular users
+20.times do
+  User.create(
+    full_name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: '000000',
+    role: 'USER',
+    confirmed_at: Time.now
+  )
+end

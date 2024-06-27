@@ -15,14 +15,8 @@
             </div>
             <div class="profile-ud-item">
               <div class="profile-ud wider">
-                <span class="profile-ud-label">Client</span>
-                <span class="profile-ud-value"><%= link_to order.user.email, admin_user_path(order.user) %></span>
-              </div>
-            </div>
-            <div class="profile-ud-item">
-              <div class="profile-ud wider">
                 <span class="profile-ud-label">Camion</span>
-                <span class="profile-ud-value"><%= link_to order.truck.plate, admin_truck_path(order.truck) %></span>
+                <span class="profile-ud-value"><%= order.truck.plate %></span>
               </div>
             </div>
             <div class="profile-ud-item">

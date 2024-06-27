@@ -23,10 +23,10 @@ module Admin
     # POST /orders
     def create
       @order = Order.new(order_params)
-      @order.status = :pending
+      @order.status = 0
 
       if @order.save
-        puts @order.inspect
+        @order.truck.update(is_available: false)
         redirect_to admin_order_url(@order), notice: 'Order was successfully created.'
       else
         render :new, status: :unprocessable_entity

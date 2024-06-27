@@ -18,4 +18,8 @@
   </div>
 </div>
 
-<%= render :partial => 'components/empty_state' %>
+<% if @orders.blank? %>
+  <%= render :partial => 'components/empty_state' %>
+<% else %>
+  <%= render :partial => is_admin? ? 'admin_table' : 'user_table' %>
+<% end %>

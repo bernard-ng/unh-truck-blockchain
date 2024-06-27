@@ -25,13 +25,7 @@
         <tr class="tb-tnx-item">
           <td><%= link_to truck.plate, admin_truck_path(truck) %></td>
           <td><%= truck.capacity %></td>
-          <td>
-            <% if truck.is_available %>
-              <span class="text text-success">OUI</span>
-            <% else %>
-              <span class="text text-danger">NON</span>
-            <% end %>
-          </td>
+          <td><%= boolean_tag truck.is_available %></td>
           <td><%= truck.created_at %></td>
           <td class="tb-tnx-action">
             <%= link_to icon_tag("eye"), admin_truck_path(truck), class: 'text-soft btn btn-icon btn-trigger' %>
