@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_021308) do
     t.float "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_available", default: false
+    t.boolean "is_available", default: true
   end
 
   create_table "users", force: :cascade do |t|
