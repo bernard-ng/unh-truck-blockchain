@@ -274,6 +274,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    web3-eth (0.1.0)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -310,6 +311,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  web3-eth
 
 RUBY VERSION
    ruby 3.3.0p0
