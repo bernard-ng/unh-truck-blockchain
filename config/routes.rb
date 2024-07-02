@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get '/orders/:id', to: 'orders#show', as: :order
+  post '/logs', to: 'logs#create', as: :logs
 
   # Defines the root path route ("/")
   root 'main#index'
