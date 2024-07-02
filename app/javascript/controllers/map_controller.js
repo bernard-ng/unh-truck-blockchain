@@ -2,6 +2,7 @@ import {Controller} from "@hotwired/stimulus"
 import L from 'leaflet'
 import 'leaflet-routing-machine'
 import 'leaflet.markercluster'
+import consumer from "../channels/consumer";
 
 const tiles = {
     openstreetmap: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -12,6 +13,11 @@ export default class MapController extends Controller {
     static values = {start: String, destination: String }
 
     initialize() {
+        this.truckMarker = undefined
+        this.truckIcon = new L.icon({
+            iconUrl: '/images/truck.png',
+            iconSize: [60, 60],
+        });
         this.markers = new L.markerClusterGroup()
         this.map = L.map('map', {center: [-11.6, 27.4], zoom: 13})
 
@@ -23,12 +29,30 @@ export default class MapController extends Controller {
     }
 
     connect() {
+        if (this.element.hasAttribute('data-order-id')) {
+            const orderId = this.element.getAttribute('data-order-id');
+            consumer.subscriptions.create({ channel: "LogChannel", order_id: orderId }, {
+                received: (data) => {
+                    data = JSON.parse(data);
+
+                    if(this.truckMarker !== undefined) {
+                        this.map.removeLayer(this.truckMarker)
+                    }
+
+                    this.truckMarker = L.marker([data.lat, data.lng], {icon: this.truckIcon})
+                    this.map.addLayer(this.truckMarker)
+                }
+            });
+        }
+
         const start = this.startValue.split(',').map(c => parseFloat(c))
         const destination = this.destinationValue.split(',').map(c => parseFloat(c))
 
+        this.truckIcon = L.marker([-11.580460, 27.490503], {icon: this.truckIcon})
         this.markers.addLayers([
             L.marker(start).bindPopup('Swala').openPopup(),
-            L.marker(destination).bindPopup('Destination').openPopup()
+            L.marker(destination).bindPopup('Destination').openPopup(),
+            this.truckIcon
         ])
 
         this.map.addLayer(this.markers)
