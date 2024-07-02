@@ -48,11 +48,12 @@ export default class MapController extends Controller {
         const start = this.startValue.split(',').map(c => parseFloat(c))
         const destination = this.destinationValue.split(',').map(c => parseFloat(c))
 
-        this.truckIcon = L.marker([-11.580460, 27.490503], {icon: this.truckIcon})
+        this.truckMarker = L.marker([-11.580460, 27.490503], {icon: this.truckIcon})
+        this.map.addLayer(this.truckMarker)
+
         this.markers.addLayers([
             L.marker(start).bindPopup('Swala').openPopup(),
             L.marker(destination).bindPopup('Destination').openPopup(),
-            this.truckIcon
         ])
 
         this.map.addLayer(this.markers)
