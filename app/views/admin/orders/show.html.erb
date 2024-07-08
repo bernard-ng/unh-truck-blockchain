@@ -25,19 +25,25 @@
             <div class="profile-ud-item">
               <div class="profile-ud wider">
                 <span class="profile-ud-label">Position</span>
-                <span class="profile-ud-value" id="live_positon"></span>
+                <span class="profile-ud-value" id="live_positon">
+                  <%= "#{@log.lat}, #{@log.lng}" unless @log.nil? %>
+                </span>
               </div>
             </div>
             <div class="profile-ud-item">
               <div class="profile-ud wider">
                 <span class="profile-ud-label">Temperature</span>
-                <span class="profile-ud-value" id="live_temperature"></span>
+                <span class="profile-ud-value" id="live_temperature">
+                  <%= @log.temperature unless @log.nil? %>
+                </span>
               </div>
             </div>
             <div class="profile-ud-item">
               <div class="profile-ud wider">
                 <span class="profile-ud-label">Quantité</span>
-                <span class="profile-ud-value" id="live_quantity"></span>
+                <span class="profile-ud-value" id="live_quantity">
+                  <%= @log.quantity unless @log.nil? %>
+                </span>
               </div>
             </div>
           </div>

@@ -10,7 +10,9 @@ module Admin
     end
 
     # GET /orders/1
-    def show; end
+    def show
+      @log = Log.where(order_id: params[:id]).last
+    end
 
     # GET /orders/new
     def new

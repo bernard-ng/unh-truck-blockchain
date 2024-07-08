@@ -4,7 +4,9 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show]
   before_action :authorize_user, only: %i[show]
 
-  def show; end
+  def show
+    @log = Log.where(order_id: params[:id]).last
+  end
 
   private
 
