@@ -11,6 +11,15 @@
 #   end
 
 15.times do
+  Driver.create(
+    name: Faker::Name.first_name_neutral,
+    affiliation: Faker::Company.name,
+    email: Faker::Internet.email,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    )
+end
+
+50.times do
   Truck.create(
     plate: Faker::Vehicle.license_plate,
     capacity: Faker::Number.number(digits: 3),

@@ -3,6 +3,7 @@
 module Admin
   class TrucksController < ApplicationController
     before_action :set_truck, only: %i[show edit update destroy]
+    before_action :set_drivers, only: %i[new edit]
 
     # GET /trucks
     def index
@@ -55,9 +56,13 @@ module Admin
       @truck = Truck.find(params[:id])
     end
 
+    def set_drivers
+      @drivers = Driver.all
+    end
+
     # Only allow a list of trusted parameters through.
     def truck_params
-      params.require(:truck).permit(:plate, :capacity, :is_available)
+      params.require(:truck).permit(:plate, :capacity, :is_available, :driver_id)
     end
   end
 end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_16_021308) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_08_125912) do
+  create_table "drivers", force: :cascade do |t|
+    t.string "name"
+    t.string "affiliation"
+    t.string "email"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "logs", force: :cascade do |t|
     t.float "temperature"
     t.float "quantity"
@@ -42,7 +51,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_021308) do
     t.float "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_available", default: true
+    t.boolean "is_available", default: false
+    t.integer "driver_id"
+    t.index ["driver_id"], name: "index_trucks_on_driver_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,4 +83,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_021308) do
   add_foreign_key "logs", "orders"
   add_foreign_key "orders", "trucks"
   add_foreign_key "orders", "users"
+  add_foreign_key "trucks", "drivers"
 end

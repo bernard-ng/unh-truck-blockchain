@@ -12,6 +12,7 @@
       <thead>
       <tr class="tb-tnx-head">
         <th>#</th>
+        <th>Chauffeur</th>
         <th>Capacité</th>
         <th>Disponible</th>
         <th>Date</th>
@@ -24,6 +25,7 @@
       <% @trucks.each do |truck| %>
         <tr class="tb-tnx-item">
           <td><%= link_to truck.plate, admin_truck_path(truck) %></td>
+          <td><%= truck.driver.name unless truck.driver.nil? %></td>
           <td><%= truck.capacity %></td>
           <td><%= boolean_tag truck.is_available %></td>
           <td><%= truck.created_at %></td>

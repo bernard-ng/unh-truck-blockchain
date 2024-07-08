@@ -8,6 +8,7 @@
       <div class="row">
         <div class="col-12 col-md-6"><%= f.text_field :plate, label: 'Plaque', class: 'form-control-lg' %></div>
         <div class="col-12 col-md-6"><%= f.text_field :capacity, label: 'Capacité', class: 'form-control-lg', append: ['M3'] %></div>
+        <div class="col-12"><%= f.collection_select :driver_id, Driver.all, :id, :name, label: 'Chauffeur', class: 'form-control-lg' %></div>
         <div class="col-12"><%= f.check_box :is_available, label: "Disponible ?", switch: true %></div>
       </div>
 
