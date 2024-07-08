@@ -2,6 +2,14 @@
 
 <%= render :layout => 'components/header', locals: {title: "Commande ##{@order.id}"} do %>
   <%= header_link_tag edit_admin_order_path(@order), 'Modifier', 'edit'  %>
+
+  <% if @order.status.to_i.zero? %>
+    <%= link_to stop_admin_order_path(@order), class: 'btn btn-white btn-dim btn-outline-light', data: {turbo_method: :post, turbo_confirm: 'êtes vous sûre ?'} do %>
+      <%= icon_tag 'location' %>
+      <span>Stop</span>
+    <% end %>
+  <% end %>
+
   <li class='nk-block-tools-opt'>
     <%= link_to admin_order_path(@order), class: 'btn btn-danger', data: {turbo_method: :delete, turbo_confirm: 'êtes vous sûre ?'} do %>
       <%= icon_tag 'trash' %>

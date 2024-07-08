@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'admin/orders/:id', to: 'admin/orders#stop', as: :stop_admin_order
+
   devise_for :users
   get '/orders/:id', to: 'orders#show', as: :order
   post '/logs', to: 'logs#create', as: :logs

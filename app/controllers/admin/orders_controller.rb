@@ -2,7 +2,7 @@
 
 module Admin
   class OrdersController < ApplicationController
-    before_action :set_order, only: %i[show edit update destroy]
+    before_action :set_order, only: %i[show edit update destroy stop]
 
     # GET /orders
     def index
@@ -12,6 +12,21 @@ module Admin
     # GET /orders/1
     def show
       @log = Log.where(order_id: params[:id]).last
+    end
+
+    def stop
+      if @order.status.to_i.zero?
+        begin
+          @log = Log.where(order_id: params[:id]).last!
+          @order.update(status: 2, received_quantity: @log.nil? ? 0 : @log.quantity)
+          @order.truck.update(is_available: true)
+          return redirect_to admin_order_url(@order), notice: 'Tracking terminé'
+        rescue StandardError
+          return redirect_to admin_order_url(@order), alert: 'Désolé aucune donnée reçue'
+        end
+      end
+
+      redirect_to admin_order_url(@order), alert: "Désolé, impossible d'arrêter le tracking"
     end
 
     # GET /orders/new
